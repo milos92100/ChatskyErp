@@ -36,6 +36,21 @@ class OfficeService
     }
 
     /**
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAll ()
+    {
+        $criteria = Criteria::create();
+        $criteria->orderBy(array(
+                "id" => Criteria::DESC
+        ));
+        
+        $offices = OfficeRepository::getInstance()->getBy($criteria)->toArray();
+        return $offices;
+    }
+
+    /**
      * Checks if a office with the given number exists.
      *
      * @param number $number            

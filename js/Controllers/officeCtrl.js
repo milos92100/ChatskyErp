@@ -2,14 +2,14 @@ admin.controller('officeCtrl', ['$scope', '$http', 'OfficeService',
     function($scope, $http, OfficeService) {
         $scope.offices = [];
 
+        OfficeService.getOffices(function(data) {
+            if (data.success) {
+                $scope.offices = data.data.rows;
+            } else {
+                alert(data.msg);
+            }
+        });
 
-        // UserService.getUsers(function(data) {
-        //     if (data.success) {
-        //         $scope.users = data.data.rows;
-        //     } else {
-        //         alert(data.msg);
-        //     }
-        // });
         // /**
         //  * This method is called when the remove button is clicked.
         //  * 

@@ -218,6 +218,7 @@ if ($user == null) {
 					<li><a href="#/"><i class="fa fa-fw "></i> Tasks</a></li>
 					<li><a href="#/"><i class="fa fa-fw "></i> Ebank</a></li>
 					<li><a href="#/"><i class="fa fa-fw "></i> Meetings</a></li>
+					<li><a href="#/offices"><i class="fa fa-fw "></i> Offices</a></li>
 
 					<!--  <li><a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a></li>
 					<li><a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a></li>
