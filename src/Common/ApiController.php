@@ -1,0 +1,26 @@
+<?php
+
+class ApiController
+{
+
+    /**
+     *
+     * @var Request
+     */
+    public $request;
+
+    public $parameters;
+
+    /**
+     *
+     * @var ApiContainer
+     */
+    public $container;
+
+    function __construct ($request)
+    {
+        $this->request = $request;
+        $this->parameters = $this->request->request->all();
+        $this->container = new ApiContainer();
+    }
+}

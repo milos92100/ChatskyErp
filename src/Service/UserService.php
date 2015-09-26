@@ -1,0 +1,103 @@
+<?php
+use UserRepository;
+use Doctrine\Common\Collections\Criteria;
+
+/**
+ * This class represents a user service.
+ *
+ * @author Milos Stojanovic , milos92100@gmail.com
+ * @version 1.0
+ * @category Service
+ *          
+ */
+class UserService
+{
+
+    public static $instance = null;
+
+    /**
+     * Returns the class instance.
+     *
+     * @return UserService
+     */
+    public static function getInstance ()
+    {
+        if (self::$instance == null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    /**
+     *
+     * @param string $username            
+     * @param string $password            
+     */
+    public function Login ($username, $password)
+    {
+        $criteria = Criteria::create();
+        
+        $criteria->where(Criteria::expr()->eq('username', $username))
+            ->andWhere(Criteria::expr()->eq('password', $password))
+            ->setMaxResults(1);
+        
+        $users = UserRepository::getInstance()->getBy($criteria);
+        if ($users->count() > 0) {
+            return $users->get(0);
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAll ()
+    {
+        $criteria = Criteria::create();
+        $criteria->orderBy(array(
+                "id" => Criteria::DESC
+        ));
+        
+        $users = UserRepository::getInstance()->getBy($criteria)->toArray();
+        return $users;
+    }
+
+    /**
+     * Checks if the given user exists.
+     * If the given user exists it returns true ,else it returns false.
+     *
+     * @since 1.0
+     * @param User $user            
+     */
+    public function Exists (User $user)
+    {
+        return $this->ExistsByUsernameAndEmail($user->getUsername(), $user->getEmail());
+    }
+
+    /**
+     * This method checks if a user exists for the given username and email.
+     * If for the given parameters a user exists it returns true ,else it
+     * returns false.
+     *
+     * @since 1.0
+     * @param string $username            
+     * @param string $email            
+     * @return boolean
+     */
+    public function ExistsByUsernameAndEmail ($username, $email)
+    {
+        $criteria = Criteria::create();
+        
+        $criteria->where(Criteria::expr()->eq('username', $username))
+            ->andWhere(Criteria::expr()->eq('email', $email));
+        
+        $users = UserRepository::getInstance()->getBy($criteria);
+        if ($users->count() > 0) {
+            return true;
+        }
+        return false;
+    }
+}
+
+?>

@@ -1,0 +1,115 @@
+<?php
+use Doctrine\ORM\EntityRepository;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\ClassMetadata;
+
+/**
+ * This class represents a entity repository.
+ *
+ * @author Milos Stojanovic
+ * @category Repository
+ * @version 1.0
+ *         
+ */
+class UserRepository extends EntityRepository
+{
+
+    const Entity = "User";
+
+    /**
+     *
+     * @var UserRepository
+     */
+    public static $instance = null;
+
+    function __construct ()
+    {
+        parent::__construct(Data::$entityManger, new ClassMetadata(self::Entity));
+    }
+
+    /**
+     * Returns the class instance.
+     *
+     * @return UserRepository
+     */
+    public static function getInstance ()
+    {
+        if (self::$instance == null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    /**
+     * Returns a Collection of users for the given Criteria object.
+     *
+     * @param Criteria $criteria            
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBy (Doctrine\Common\Collections\Criteria $criteria)
+    {
+        return $this->matching($criteria);
+    }
+
+    /**
+     * Returns a User object for the given id or null if not found.
+     *
+     * @param int $id            
+     * @return User
+     */
+    public function getById ($id)
+    {
+        return $this->find($id);
+    }
+
+    /**
+     * Updates the given user.
+     *
+     * @param User $user            
+     * @throws Exception
+     * @return User
+     */
+    public function update (User $user)
+    {
+        $record = $this->find($user->getId());
+        if ($record == null) {
+            throw new Exception("User not found (" . $user->getId() . ")");
+        }
+        $record->updateValues($user);
+        $this->getEntityManager()->flush($record);
+        return $record;
+    }
+
+    /**
+     * This method removes the given user from the db.
+     *
+     * @param User $user            
+     * @throws Exception
+     */
+    public function remove (User $user)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->delete(self::Entity, "u")
+            ->where("u.id = :user_id")
+            ->setParameter("user_id", $user->getId());
+        
+        $qb->getQuery()->execute();
+    }
+
+    /**
+     * This method inserts the given user in the db.
+     * If the id is set the insert was successfull.
+     *
+     * @param User $user            
+     * @return User
+     */
+    public function add (User $user)
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+        return $user;
+    }
+}
+
+?>
