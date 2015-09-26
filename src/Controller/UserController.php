@@ -167,9 +167,6 @@ class UserController extends ApiController
             $login = new Login();
             $user = $login->isLogedIn();
             
-            
-            error_log("dadasddasdasdasds");
-            
             $this->container->setMsg("User recived")
                 ->setSuccess(true)
                 ->setData(array(
