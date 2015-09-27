@@ -265,6 +265,7 @@ if ($user == null) {
 	<script src="./../../js/Service/UserService.js"></script>
 	<script src="./../../js/Service/OfficeService.js"></script>
 	<script src="./../../js/Controllers/officeCtrl.js"></script>
+	<script src="./../../js/Controllers/addOfficeCtrl.js"></script>
 
 </body>
 

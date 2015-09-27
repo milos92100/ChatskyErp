@@ -42,6 +42,9 @@ abstract class ApiObject implements JsonSerializable
         $vars = get_object_vars($this);
         
         foreach ($vars as $key => $var) {
+            
+            error_log($key . " " . $var);
+            
             if ($key === 'id' && ! $check_id)
                 continue;
             

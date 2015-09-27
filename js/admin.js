@@ -42,6 +42,9 @@ admin.config(function($routeProvider) {
     }).when('/offices', {
         templateUrl: 'offices.html',
         controller: 'officeCtrl'
+    }).when('/add_office', {
+        templateUrl: 'add_office.html',
+        controller: 'addOfficeCtrl'
     }).otherwise({
         redirectTo: '/'
     });

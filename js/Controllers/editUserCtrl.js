@@ -9,7 +9,10 @@
 admin.controller('editUserCtrl', ['$scope', '$http', 'UserService', '$routeParams',
     function($scope, $http, UserService, $routeParams) {
         $scope.user = {};
-        console.log($routeParams.user_id);
+       
+
+       console.log($routeParams.user_id);
+
         UserService.getById($routeParams.user_id, function(data) {
                 if (data.success) {
                     $scope.user = data.data.user;

@@ -25,7 +25,7 @@ class Room extends ApiObject
      *
      * @var string @Column(type="string")
      */
-    protected $descritpion;
+    protected $description;
 
     /**
      *
@@ -125,7 +125,7 @@ class Room extends ApiObject
 
     /**
      * Sets the surface
-     * 
+     *
      * @param number $surface            
      */
     public function setSurface ($surface)

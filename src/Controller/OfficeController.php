@@ -19,6 +19,9 @@ class OfficeController extends ApiController
             
             $office = new Office($this->parameters);
             
+            
+            error_log(json_encode($office));
+            
             if (! $office->verifyPorperties()) {
                 throw new Exception("Fill all fields");
             }

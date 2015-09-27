@@ -1,0 +1,34 @@
+<div class="table-responsive" >
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Add new Office</legend>
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">*</span> <input type="number" class="form-control" placeholder="Number" ng-model="office.number"
+                aria-describedby="sizing-addon2" name="number">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">*</span> <input type="text" class="form-control" placeholder="Name" ng-model="office.name"
+                aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">*</span> <input type="text" ng-model="office.description" class="form-control" placeholder="Description"
+                aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">*</span> <input type="number"  value="0" ng-model="office.surface" class="form-control" placeholder="Surface"
+                aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <br>
+             <div class="control-group">
+                <div class="controls">
+                    <button id="button1id" name="button1id" class="btn btn-success" ng-click="save()">Save</button>
+                    <button id="button2id" name="button2id" class="btn btn-primary" onClick="reset()">Reset form</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
