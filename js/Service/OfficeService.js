@@ -34,8 +34,34 @@ angular.module('app').service('OfficeService', function($http) {
          * @param callback function
          */
     this.add = function(office, callback) {
+            office.controller = 'Office';
+            office.action = 'Add';
+            $http({
+                method: 'POST',
+                data: $.param(office),
+                url: window.location.origin + '/api/api.php',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).success(function(data, status, headers, config) {
+                if (typeof(callback) != 'undefined') {
+                    callback(data)
+                }
+            }).error(function(data, status, headers, config) {
+                if (typeof(callback) != 'undefined') {
+                    callback(data)
+                }
+            });
+        }
+        /**
+         * Removes a office with the givne id. s
+         * 
+         * @param int id
+         * @param function callback
+         */
+    this.remove = function(office, callback) {
         office.controller = 'Office';
-        office.action = 'Add';
+        office.action = 'Delete';
         $http({
             method: 'POST',
             data: $.param(office),

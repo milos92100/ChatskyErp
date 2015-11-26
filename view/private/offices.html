@@ -17,19 +17,15 @@
         <div class="col-lg-2">
             <div class="input-group">
                 <input type="text" ng-model="query.name" class="form-control" aria-label="..." placeholder="search">
-
             </div>
-
             <!-- /input-group -->
         </div>
         <div class="col-lg-2">
             <div class="input-group" >
                 <a href="#/add_office" class="btn btn-primary" >Add new office</a>
             </div>
-
             <!-- /input-group -->
         </div>
-
         <!-- /.col-lg-6 -->
     </div>
     <br>
@@ -38,19 +34,25 @@
             <tr>
                 <th><a href="" ng-click="sortField = 'number'; reverse = !reverse ">Number</a></th>
                 <th><a href="" ng-click="sortField = 'name'; reverse = !reverse ">Name</a></th>
-                <th><a href="" ng-click="sortField = 'descritpion'; reverse = !reverse ">Description</a></th>
-                <th><a href="" ng-click="sortField = 'surface'; reverse = !reverse ">Surface (square m)</a></th>
+                <th>
+                    <a href="" ng-click="sortField = 'descritpion'; reverse = !reverse ">Description</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sortField = 'surface'; reverse = !reverse ">Surface (square m)</a>
+                </th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="office in offices | filter:query | orderBy:sortField:reverse">
-                <td id="{{office.number}}">{{office.id}}</td>
+                <td id="{{office.number}}">{{office.number}}</td>
                 <td id="{{office.name}}">{{office.name}}</td>
-                <td id="{{office.descritpion}}">{{office.descritpion}}</td>
+                <td id="{{office.descritpion}}">{{office.description}}</td>
                 <td id="{{office.surface}}">{{office.surface}}</td>
-                <td><input type="button" value="Edit" class="btn btn-success" ng-click="edit(user)" /></td>
-                <td><input type="button" value="Remove" class="btn btn-danger" ng-click="remove(user)" /></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                <td>
+                    <input type="button" value="Edit" class="btn btn-success" ng-click="edit(office)" />
+                    <input type="button" value="Remove" class="btn btn-danger" ng-click="remove(office)" />
+                </tr>
+            </tbody>
+        </table>
+    </div>

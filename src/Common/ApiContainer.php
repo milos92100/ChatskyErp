@@ -3,17 +3,34 @@
 /**
  *
  * @author milos
- *
+ * @version 1.0
+ * @copyright Chatsky LTD 
+ * 
  */
 class ApiContainer
 {
 
+    /**
+     *
+     * @var boolean
+     */
     public $success;
 
+    /**
+     *
+     * @var string
+     */
     public $msg;
 
+    /**
+     *
+     * @var array
+     */
     public $data;
 
+    /**
+     * Constructor
+     */
     function __construct ()
     {
         $this->success = false;

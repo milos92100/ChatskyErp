@@ -19,7 +19,6 @@ class OfficeController extends ApiController
             
             $office = new Office($this->parameters);
             
-            
             error_log(json_encode($office));
             
             if (! $office->verifyPorperties()) {
@@ -60,18 +59,18 @@ class OfficeController extends ApiController
     {
         try {
             
-            $user = new User($this->parameters);
+            $office = new Office($this->parameters);
             
-            if (UserRepository::getInstance()->getById($user->getId()) == null) {
-                throw new Exception("User with id ( " . $user->getId() . " ) does not exist");
+            if (OfficeRepository::getInstance()->find($office->getId()) == null) {
+                throw new Exception("Office with id ( " . $office->getId() . " ) does not exist");
             }
             
-            UserRepository::getInstance()->remove($user);
+            OfficeRepository::getInstance()->remove($office);
             
-            $this->container->setMsg("User successfully removed")
+            $this->container->setMsg("Office successfully removed")
                 ->setSuccess(true)
                 ->getData(array(
-                    "user" => $user
+                    "office" => $office
             ));
             ;
         } catch (Exception $e) {

@@ -43,6 +43,22 @@ class OfficeRepository extends EntityRepository
     }
 
     /**
+     * This method removes the given office from the db.
+     *
+     * @param Office $user            
+     * @throws Exception
+     */
+    public function remove (Office $office)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->delete(self::Entity, "o")
+            ->where("o.id = :office_id")
+            ->setParameter("office_id", $office->getId());
+        
+        $qb->getQuery()->execute();
+    }
+
+    /**
      * This method inserts the given office in the db.
      * If the id is set the insert was successfull.
      *

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\ClassMetadata;
  * @author Milos Stojanovic
  * @category Repository
  * @version 1.0
+ * @package src/Repository
  *         
  */
 class UserRepository extends EntityRepository
